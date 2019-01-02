@@ -64,91 +64,60 @@ function categorySelector(arr) {
     return arr[randomIndex];
 }
 
+//category key is the curriculum category key for main use
 let categoryKey = categorySelector(curriculumArray(markTarrant.curriculum));
-let category = curriculumObject[categoryKey];
 
-//category is the next category to be questioned, can then use this as the key to select the next question from the question array
+//category is purely for debugging qualities to let me know what the category is without looking it up
+let category = curriculumObject[categoryKey];
 console.log(category);
 
 let questionObject = {
-    1: {
-        1: "What is 10 multiplied by 3", 
-        2: "What is 6 multiplied by 7"
-    },
+    1:[
+        ["What is 10 multiplied by 3", 30],
+        ["What is 6 multiplied by 7", 42]
+    
+    ],
 
-    2: {
-
-    }, 
-
-    3: {
-
-    }, 
-
-    4: {
-
-    }, 
-
-    5: {
-
-    }, 
-
-    6: {
-
-    }, 
-
-    7: {
-
-    }, 
-
-    8: {
-
-    }
+    2: [
 
 
-};
+    ], 
 
-let answerObject = {
-    1: {
-        1: 30, 
-        2: 42
-    },
-
-    2: {
-
-    }, 
-
-    3: {
-
-    }, 
-
-    4: {
-
-    }, 
-
-    5: {
-
-    }, 
-
-    6: {
-
-    }, 
-
-    7: {
-
-    }, 
-
-    8: {
+    3: [
         
-    }
-};
 
+    ], 
+
+    4: [
+
+
+    ],
+
+    5: [
+
+
+    ],
+
+    6: [
+
+    ],
+
+    7: [
+
+
+    ],
+
+    8: [
+
+
+    ]
+
+};
 
 
 //To do list 
 //questionState function is very specific, needs to know what the question is, maybe need to write the question algorithm first
 //may need to write extensive tests as this re-sets every time
-//need to turn each question object category into an array as opposed to further objects, can then just loop through them and surface a random question
-//similar for the answer object
 //need to dynamically update the student object based on whether the student answered the question correctly or not
 
 
@@ -156,7 +125,8 @@ let kathrynWiltshire = new student("Kathryn Wiltshire");
 
 //user input value stored
 let studentAnswer = 30;
-let question = questionObject[1][1];
+let question = questionObject[1][0][0];
+console.log(question);
 
 //change question state based on answer of question
 function questionState() {
