@@ -60,58 +60,52 @@ function curriculumArray(obj) {
 
 //uses the above array to select a category number which can then be looked up using the curriculum object above
 function categorySelector(arr) {
-    let randomIndex = Number((Math.random() * arr.length).toFixed());
+    let length = arr.length - 1; 
+    let randomIndex = Number((Math.random() * length).toFixed());
     return arr[randomIndex];
 }
 
 //category key is the curriculum category key for main use
 let categoryKey = categorySelector(curriculumArray(markTarrant.curriculum));
+//console.log(categoryKey);
 
 //category is purely for debugging qualities to let me know what the category is without looking it up
 let category = curriculumObject[categoryKey];
-console.log(category);
+//console.log(category);
 
 let questionObject = {
     1:[
         ["What is 10 multiplied by 3", 30],
         ["What is 6 multiplied by 7", 42]
-    
     ],
 
     2: [
-
-
+        ["Calculating Question", "Calculating Answer"]
     ], 
 
     3: [
-        
-
+        ["Fractions, Decimals and Percentages Question", "Fractions, Decimals and Percentages Answer"]
     ], 
 
     4: [
-
-
+        ["Ratio and Proportion Question", "Ratio and Proportion Answer"]
     ],
 
     5: [
-
-
+        ["Algebra Question", "Algebra Answer"]
     ],
 
     6: [
-
+        ["Measurement Question", "Measurement Answer"]
     ],
 
     7: [
-
-
+        ["Geometry Question", "Geometry Answer"]
     ],
 
     8: [
-
-
+        ["Statistics Question", "Statistics Answer"]
     ]
-
 };
 
 
@@ -125,14 +119,25 @@ let kathrynWiltshire = new student("Kathryn Wiltshire");
 
 //user input value stored
 let studentAnswer = 30;
-let question = questionObject[1][0][0];
-console.log(question);
+let questionTest = questionObject[1][0][0];
+
+//console.log(questionObject[1].length);
 
 //change question state based on answer of question
 function questionState() {
-    if(question == "What is 10 multiplied by 3" && studentAnswer !== 30) {
+    if(questionTest == "What is 10 multiplied by 3" && studentAnswer !== 30) {
         markTarrant.questionState[1] += 1; 
     };
 }
 
+
+//function which randomly selects a question based on the student object which keeps track of the number of questions answered correctly
+function question() {
+    let length = questionObject[categoryKey].length - 1;
+    let randomIndex = Number((Math.random() * length).toFixed());
+    let question = questionObject[categoryKey][randomIndex][0];
+    console.log(question);
+}
+
+question();
 
