@@ -1,8 +1,5 @@
 //algorithm that creates a student object, that includes the various curriculum headings
 //will need to surface a random question, under a question object, check what question that was and their answer
-//updated note for a test
-//further note for branch 1 test
-
 
 function student (name) {
     this.name = name;
@@ -27,7 +24,7 @@ student.prototype = {
         3: 1, 
         4: 1, 
         5: 1, 
-        6: 10, 
+        6: 1, 
         7: 1, 
         8: 1
     }
@@ -46,7 +43,6 @@ function curriculumArray(obj) {
             demoObject[property] -= 1; 
         }
     }
-    console.log(array);
     return array; 
 }
 
