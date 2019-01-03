@@ -1,5 +1,4 @@
-//algorithm that creates a student object, that includes the various curriculum headings
-//will need to surface a random question, under a question object, check what question that was and their answer
+//creation of a student object, that includes the various curriculum headings
 
 function student (name) {
     this.name = name;
