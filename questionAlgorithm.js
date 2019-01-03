@@ -129,8 +129,6 @@ function questionStateFunction() {
     console.log(markTarrant.curriculum);
 }
 
-
-
 //user input value stored
 let answer1 = 30;
 
@@ -141,6 +139,6 @@ console.log(curriculumArray(markTarrant.curriculum));
 
 
 //To do list 
-//everything works, need to work on remembering state, i.e. stop everything re-setting each time, this may just need multiple tests. 
+//everything works, need to work on remembering state, i.e. stop everything re-setting each time, this may need me to set up mongo so that it stores the values long term 
 //may need to write extensive tests as this re-sets every time
 //could potentially go back and clean up global objects, putting them in a single reference object
