@@ -27,17 +27,6 @@ student.prototype = {
         6: 1, 
         7: 1, 
         8: 1
-    }, 
-
-    questionState: { 
-        1: 0, 
-        2: 0, 
-        3: 0, 
-        4: 0, 
-        5: 0, 
-        6: 0, 
-        7: 0, 
-        8: 0
     }
 };
 
@@ -47,10 +36,10 @@ let markTarrant = new student("Mark Tarrant");
 function curriculumArray(obj) {
     let array = []; 
     //creates a demo object to make sure the original object is not changed
-    let demoObject = obj; 
+    let demoObject = JSON.parse(JSON.stringify(obj)); 
     //iterates through each key in the student.curriculum object and creates an array based on the value assigned to each key
     for (var property in demoObject) {
-        while (demoObject[property] > 0) {
+        while (demoObject[property] >= 1) {
             array.push(property); 
             demoObject[property] -= 1; 
         }
@@ -69,6 +58,7 @@ function categorySelector(arr) {
 let categoryKey = categorySelector(curriculumArray(markTarrant.curriculum));
 //console.log(categoryKey);
 
+
 //category is purely for debugging qualities to let me know what the category is without looking it up
 let category = curriculumObject[categoryKey];
 //console.log(category);
@@ -80,66 +70,78 @@ let questionObject = {
     ],
 
     2: [
-        ["Calculating Question", "Calculating Answer"]
+        ["Calculating Question 1", "Calculating Answer 1"],
+        ["Calculating Question 2", "Calculating Answer 2"]
     ], 
 
     3: [
-        ["Fractions, Decimals and Percentages Question", "Fractions, Decimals and Percentages Answer"]
+        ["Fractions, Decimals and Percentages Question 1", "Fractions, Decimals and Percentages Answer 1"],
+        ["Fractions, Decimals and Percentages Question 2", "Fractions, Decimals and Percentages Answer 2"]
     ], 
 
     4: [
-        ["Ratio and Proportion Question", "Ratio and Proportion Answer"]
+        ["Ratio and Proportion Question 1", "Ratio and Proportion Answer 1"],
+        ["Ratio and Proportion Question 2", "Ratio and Proportion Answer 2"]
     ],
 
     5: [
-        ["Algebra Question", "Algebra Answer"]
+        ["Algebra Question 1", "Algebra Answer 1"],
+        ["Algebra Question 2", "Algebra Answer 2"]
     ],
 
     6: [
-        ["Measurement Question", "Measurement Answer"]
+        ["Measurement Question 1", "Measurement Answer 1"],
+        ["Measurement Question 2", "Measurement Answer 2"]
     ],
 
     7: [
-        ["Geometry Question", "Geometry Answer"]
+        ["Geometry Question 1", "Geometry Answer 1"],
+        ["Geometry Question 2", "Geometry Answer 2"]
     ],
 
     8: [
-        ["Statistics Question", "Statistics Answer"]
+        ["Statistics Question 1", "Statistics Answer 1"],
+        ["Statistics Question 2", "Statistics Answer 2"]
     ]
 };
 
-
-let kathrynWiltshire = new student("Kathryn Wiltshire"); 
-
-//user input value stored
-let studentAnswer = 30;
-let questionTest = questionObject[1][0][0];
-
-//console.log(questionObject[1].length);
-
-//change question state based on answer of question
-function questionState() {
-    if(questionTest == "What is 10 multiplied by 3" && studentAnswer !== 30) {
-        markTarrant.questionState[1] += 1; 
-    };
-}
-
+let randomIndex; 
 
 //function which randomly selects a question based on the student object which keeps track of the number of questions answered correctly
 function question() {
     let length = questionObject[categoryKey].length - 1;
-    let randomIndex = Number((Math.random() * length).toFixed());
+    randomIndex = Number((Math.random() * length).toFixed());
     let question = questionObject[categoryKey][randomIndex][0];
     console.log(question);
+    //console.log(randomIndex);
+    return question;
+}
+
+//change question state based on answer of question
+function questionStateFunction() {
+    question();
+    let correctanswer = questionObject[categoryKey][randomIndex][1];
+    if(correctanswer !== answer1) {
+        markTarrant.curriculum[categoryKey] *= 2; 
+    } else if (correctanswer == answer1 && markTarrant.curriculum[categoryKey] >= 2) {
+        markTarrant.curriculum[categoryKey] /= 2
+    } else markTarrant.curriculum[categoryKey] == 1; 
+
+    console.log(markTarrant.curriculum);
 }
 
 
-question();
+
+//user input value stored
+let answer1 = 30;
+
+questionStateFunction();
+console.log(curriculumArray(markTarrant.curriculum));
+
+
+
 
 //To do list 
-//write a function that updates the student curriculum object based on the state object which is goverened by whether the question was answered correclty or not
-//change state to 1 if answered incorrectly, which would then double the value in the curriculum object
-//change state to 0 if answered correctly, which would then half the value in the curriculum object or set the value to 1 if less than 1
-//sync up the state object with the student object curriculum to change whether the question was answered correctly or not
+//everything works, need to work on remembering state, i.e. stop everything re-setting each time, this may just need multiple tests. 
 //may need to write extensive tests as this re-sets every time
-//need to dynamically update the student object based on whether the student answered the question correctly or not
+//could potentially go back and clean up global objects, putting them in a single reference object
