@@ -7,6 +7,28 @@ const path = require('path');
 const db = require('./db');
 const collection = 'student';
 
+//serves static html file to user
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+//returns the database collection
+//return all documents within collection
+//toarray, converts to an array 
+//if there is an erorr log the error
+//if no error console the documents and provide the documents via json
+app.get('/getStudent', (req, res) => {
+    db.getDB().collection(collection).find({}).toArray((err,documents) => {
+        if(err)
+            console.log(err);
+        else {
+            console.log(documents);
+            res.json(documents);
+        }
+    })
+});
+
+
 //connect to db
 //pass in a callback, if there is an error, console log an error
 //terminate application if error 
