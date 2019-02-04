@@ -28,6 +28,23 @@ app.get('/getStudent', (req, res) => {
     })
 });
 
+//update student document method
+app.put('/:id', (req,res)=> {
+    // Primary Key of student Document we wish to update
+    const studentID = req.params.id;
+    // Document used to update
+    const userInput = req.body; 
+    // Find Document By ID and Update
+    db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(studentID)}, {$set : {student : userInput.student}}, {returnOriginal : false}, (err, result) => {
+        if(err) {
+            console.log(err);
+            }
+        else {
+            res.json(result);
+        }
+    });
+});
+
 
 //connect to db
 //pass in a callback, if there is an error, console log an error

@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const ObjectID = require('mongodb').objectID;
+const ObjectID = require('mongodb').ObjectID;
 const dbname = 're-educate';
 const url = 'mongodb://localhost:27017';
 const mongoOptions = {useNewUrlParser: true};
@@ -13,7 +13,6 @@ const state = {
 //if there isnt a database connection, use the mongoclient to connect to the database
 //check if there is an error, if there is an error, pass back to the callback
 //if there is no error, set state then call the callback
-
 const connect = (cb) => {
     if(state.db) 
         cb();
