@@ -45,6 +45,21 @@ app.put('/:id', (req,res)=> {
     });
 });
 
+//server side method for creating a student
+//creates a new document relating to the student 
+app.post('/', (req,res) => {
+    const userInput = req.body;
+    //connect to the database collection known as collection which is the student db
+    //uses the insertOne method to insert a new collection and creates a primary key relating to that student
+    db.getDB().collection(collection).insertOne(userInput, (err, result) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.json({result : result, document : result.ops[0]});
+        }
+    });
+});
+
 
 //connect to db
 //pass in a callback, if there is an error, console log an error
