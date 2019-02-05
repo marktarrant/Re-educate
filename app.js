@@ -60,6 +60,19 @@ app.post('/', (req,res) => {
     });
 });
 
+//server side delete method
+//id is the primary key relating to the document to be deleted
+//useful if a student wants to shutdown their account
+app.delete('/:id', (req, res) => {
+    const studentID = req.params.id; 
+    db.getDB().collection(collection).findOneAndDelete({_id : db.getPrimaryKey(studentID)},(err, result)=>{
+        if(err) {
+            console.log(err); 
+        } else {
+            res.json(result);
+        }
+    });
+});
 
 //connect to db
 //pass in a callback, if there is an error, console log an error
