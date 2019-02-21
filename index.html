@@ -5,92 +5,122 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
-        .container-fluid {
-    background-color: red;
-  }
-  
-  .question-box {
-    margin-top: 15%;
-    margin-bottom: 5%;
-    width: 55%;
-    height: auto;
-    background-color: white;
-  }
-  
-  .answer-box {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 55%;
-    height: auto;
-    background-color: white;
-  }
-  
-  .question {
-    font-size: 5vh;
-    font-family: Trebuchet MS;
-  }
-  
-  .answer-button {
-    margin-left: 27vw;
-    background-color: red;
-    border-color: red;
-  }
-  
-  .next-question-button {
-    margin-left: 27vw;
-    background-color: red;
-    border-color: red;
-  }
+    
+.body {
+  background: red;
+}
+
+.question-box {
+  margin-top: 15%;
+  margin-bottom: 5%;
+  margin-left: auto; 
+  margin-right: auto;
+  padding: 7vh; 
+  width: 60%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px; 
+}
+
+.input-box {
+  font-size: 3vh;
+  font-family: Trebuchet MS;
+  margin: auto; 
+  display: block;
+  padding: 7vh; 
+  width: 60%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px; 
+}
+
+input {
+  border: none; 
+  height: 100%; 
+  width: 100%;
+}
+
+.response-div {
+  margin: auto; 
+  width: 50%;
+}
+
+p {
+  font-size: 5vh;
+  font-family: Trebuchet MS;
+  margin-top: 3vh; 
+}
+
+.answer-button {
+  margin-left: 27vw;
+  background-color: red;
+  border-color: red;
+}
+
+.next-question-button {
+  margin-left: 27vw;
+  background-color: red;
+  border-color: red;
+}
+
     </style>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
-    <title>Hello, world!</title>
+    <title>Re-educate</title>
   </head>
-  <body class="container-fluid">
-        <div class="jumbotron question-box mx-auto">
-          <h2 class="question blockquote text-center">Question Example</h2> 
+  <body class="body">
+        <div class="question-box">
+          <p class="question text-center">Question Example</p> 
           <div class="buttons row">
-             <button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>
+             <button type="button" class="answer-button btn btn-danger btn-md ">Show Answer</button>
           </div>
         </div>
+          <input type="text" class="input-box" placeholder="Type answer here...">     
+    </body>
+        
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        //function that updates CSS colours
-        function updateCssColours() {
-            let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-            
-            $("body").css("background", hue);
-            $(".answer-button").css("background", hue);      
-            $(".answer-button").css("border-color", hue);
-            $(".next-question-button").css("background", hue);      
-            $(".next-question-button").css("border-color", hue);
-        }
-        
-        //function to handle the initial show answer click event
-        $('body').on('click', '.answer-button', function(){  
-        
-            $(".question-box").after('<div class="jumbotron answer-box mx-auto"><h2 class="question blockquote text-center">Answer Example</h2></div>')
-            
-            $(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
-            
-            updateCssColours();
-            
-        });
-        
-        //function to handle the next question click event
-        $('body').on('click', '.next-question-button', function() {
-            $(".next-question-button").replaceWith('<button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>');
-            
-            $(".answer-box").remove();
-            
-            updateCssColours();
-        
-        });
-        
-        //have to use 'body'.on as the event handler as you can replace body with any parent element that exists on dom. If you dont do this it doesnt recognise that the element you dynamically create exists. 
+     //function that updates CSS colours
+function updateCssColours() {
+  let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+  
+$("body").css("background", hue);
+$(".answer-button").css("background", hue);      
+$(".answer-button").css("border-color", hue);
+$(".next-question-button").css("background", hue);      
+$(".next-question-button").css("border-color", hue);
+}
+
+//function to handle the initial show answer click event
+$('body').on('click', '.answer-button', function(){  
+
+$(".question").append('<p class="response blockquote text-center">Answer Example</p>')
+  
+$(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
+  
+updateCssColours();
+   
+});
+
+//function to handle the next question click event
+$('body').on('click', '.next-question-button', function() {
+  $(".next-question-button").replaceWith('<button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>');
+  
+$(".response").remove();
+$(".input-box").val('');
+  
+updateCssColours();
+
+
+
+});
+
+
+
+//have to use 'body'.on as the event handler as you can replace body with any parent element that exists on dom. If you dont do this it doesnt recognise that the element you dynamically create exists.    
     </script>    
 </body>
 </html>
