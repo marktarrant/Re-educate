@@ -54,8 +54,44 @@
              <button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>
           </div>
         </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        //function that updates CSS colours
+        function updateCssColours() {
+            let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+            
+            $("body").css("background", hue);
+            $(".answer-button").css("background", hue);      
+            $(".answer-button").css("border-color", hue);
+            $(".next-question-button").css("background", hue);      
+            $(".next-question-button").css("border-color", hue);
+        }
+        
+        //function to handle the initial show answer click event
+        $('body').on('click', '.answer-button', function(){  
+        
+            $(".question-box").after('<div class="jumbotron answer-box mx-auto"><h2 class="question blockquote text-center">Answer Example</h2></div>')
+            
+            $(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
+            
+            updateCssColours();
+            
+        });
+        
+        //function to handle the next question click event
+        $('body').on('click', '.next-question-button', function() {
+            $(".next-question-button").replaceWith('<button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>');
+            
+            $(".answer-box").remove();
+            
+            updateCssColours();
+        
+        });
+        
+        //have to use 'body'.on as the event handler as you can replace body with any parent element that exists on dom. If you dont do this it doesnt recognise that the element you dynamically create exists. 
+    </script>    
 </body>
 </html>
 
