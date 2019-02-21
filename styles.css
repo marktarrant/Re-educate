@@ -1,0 +1,36 @@
+.container-fluid {
+    background-color: red;
+  }
+  
+  .question-box {
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 55%;
+    height: auto;
+    background-color: white;
+  }
+  
+  .answer-box {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 55%;
+    height: auto;
+    background-color: white;
+  }
+  
+  .question {
+    font-size: 5vh;
+    font-family: Trebuchet MS;
+  }
+  
+  .answer-button {
+    margin-left: 27vw;
+    background-color: red;
+    border-color: red;
+  }
+  
+  .next-question-button {
+    margin-left: 27vw;
+    background-color: red;
+    border-color: red;
+  }
