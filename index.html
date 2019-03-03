@@ -70,8 +70,7 @@ p {
     <title>Re-educate</title>
   </head>
   <body class="body">
-        <div class="question-box">
-          <p class="question text-center">Question Example</p> 
+        <div class="question-box"> 
           <div class="buttons row">
              <button type="submit" class="answer-button btn btn-danger btn-md ">Show Answer</button>
           </div>
@@ -94,30 +93,49 @@ $(".next-question-button").css("background", hue);
 $(".next-question-button").css("border-color", hue);
 }
 
+//getting the questions from the question database
+//passes the data from the database to the displayQuestion function which updates the html
+$(document).ready(() => {
+    const getQuestions = () => { 
+        fetch('/getQuestions', {method: "get"}).then((response) => {
+            return response.json(); 
+        }).then((data) => {
+            console.log(data);
+            displayQuestion(data);
+        });
+    }
+
+    //function that takes the data from the database and updates html
+    //arr['1'] relates to the identifier of the object
+    function displayQuestion(arr) {
+        let question = arr['1'].question; 
+        console.log(question);
+        $(".buttons").prepend('<p class="question text-center">' + question + '</p>');
+    }
+    
+    getQuestions();
+    displayQuestion();
+
+})
+
+
+
 //function to handle the show answer click event
 $('body').on('click', '.answer-button', function(){  
-
-$(".question").append('<p class="response blockquote text-center">Answer Example</p>')
-  
-$(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
-
-let input = $(".input-box").val(); 
-
-$(".input-box").replaceWith('<div class="input-box">' + input + '</div>');
-
-updateCssColours();
+    $(".question").append('<p class="response blockquote text-center">Answer Example</p>')
+    $(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
+    let input = $(".input-box").val(); 
+    $(".input-box").replaceWith('<div class="input-box">' + input + '</div>');
+    updateCssColours();
    
 });
 
 //function to handle the next question click event
 $('body').on('click', '.next-question-button', function() {
-  $(".next-question-button").replaceWith('<button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>');
-  
-$(".response").remove();
-$(".input-box").replaceWith('<input type="text" class="input-box" placeholder="Type answer here...">');
-  
-updateCssColours();
-
+    $(".next-question-button").replaceWith('<button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>');
+    $(".response").remove();
+    $(".input-box").replaceWith('<input type="text" class="input-box" placeholder="Type answer here...">');
+    updateCssColours();
 });
 
 
