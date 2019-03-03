@@ -5,7 +5,8 @@ app.use(bodyParser.json());
 const path = require('path');
 
 const db = require('./db');
-const collection = 'student';
+const studentCollection = 'student';
+const questionCollection = 'questionAndAnswer'; 
 
 //serves static html file to user
 app.get('/', (req, res) => {
@@ -18,7 +19,24 @@ app.get('/', (req, res) => {
 //if there is an erorr log the error
 //if no error console the documents and provide the documents via json
 app.get('/getStudent', (req, res) => {
-    db.getDB().collection(collection).find({}).toArray((err,documents) => {
+    db.getDB().collection(studentCollection).find({}).toArray((err,documents) => {
+        if(err)
+            console.log(err);
+        else {
+            console.log(documents);
+            res.json(documents);
+        }
+    })
+});
+
+//15 mins into video is tutorial
+//returns the database collection
+//return all documents within collection
+//toarray, converts to an array 
+//if there is an erorr log the error
+//if no error console the documents and provide the documents via json
+app.get('/getQuestions', (req, res) => {
+    db.getDB().collection(questionCollection).find({}).toArray((err,documents) => {
         if(err)
             console.log(err);
         else {
@@ -90,3 +108,8 @@ db.connect((err) => {
     }
 })
 
+//todo list
+//serve up the questions from the database to the user (fetch api section of tutorial)
+//determine whether the user input is the same as the answer for that question
+//update the user database with their score
+//incorporate the algorithm to determine which questions are set
