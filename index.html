@@ -94,13 +94,17 @@ $(".next-question-button").css("background", hue);
 $(".next-question-button").css("border-color", hue);
 }
 
-//function to handle the initial show answer click event
+//function to handle the show answer click event
 $('body').on('click', '.answer-button', function(){  
 
 $(".question").append('<p class="response blockquote text-center">Answer Example</p>')
   
 $(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
-  
+
+let input = $(".input-box").val(); 
+
+$(".input-box").replaceWith('<div class="input-box">' + input + '</div>');
+
 updateCssColours();
    
 });
@@ -110,11 +114,9 @@ $('body').on('click', '.next-question-button', function() {
   $(".next-question-button").replaceWith('<button type="button" class="btn btn-md btn-primary answer-button">Show Answer</button>');
   
 $(".response").remove();
-$(".input-box").val('');
+$(".input-box").replaceWith('<input type="text" class="input-box" placeholder="Type answer here...">');
   
 updateCssColours();
-
-
 
 });
 
