@@ -102,6 +102,7 @@ $(document).ready(() => {
         }).then((data) => {
             console.log(data);
             displayQuestion(data);
+            displayAnswer(data);
         });
     }
 
@@ -115,20 +116,22 @@ $(document).ready(() => {
     
     getQuestions();
     displayQuestion();
+    displayAnswer();
 
 })
 
-
+function displayAnswer(arr) {
+    let answer = arr['1'].answer; 
 
 //function to handle the show answer click event
-$('body').on('click', '.answer-button', function(){  
-    $(".question").append('<p class="response blockquote text-center">Answer Example</p>')
-    $(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
-    let input = $(".input-box").val(); 
-    $(".input-box").replaceWith('<div class="input-box">' + input + '</div>');
-    updateCssColours();
-   
-});
+    $('body').on('click', '.answer-button', function(){  
+        $(".question").append('<p class="response blockquote text-center">' + answer + '</p>')
+        $(".answer-button").replaceWith('<button type="button" class="btn btn-md btn-primary next-question-button">Next Question</button>')
+        let input = $(".input-box").val(); 
+        $(".input-box").replaceWith('<div class="input-box">' + input + '</div>');
+        updateCssColours();
+    });
+}
 
 //function to handle the next question click event
 $('body').on('click', '.next-question-button', function() {
